@@ -153,7 +153,7 @@ module "endpoint" {
 }
 
 module "endpoint_rtbl_association" {
-    source = "../../configurations/base_infra_aws_aws/endpoint_association"
+    source = "../../configurations/base_infra_aws/endpoint_association"
 
     rtbl_id = module.route_table.rtbl_id
     vpc_endpoint_id = module.endpoint.endpoint_id
