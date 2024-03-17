@@ -1,4 +1,4 @@
-This file will be used as a module file for vpc creation
+# This file will be used as a module file for vpc creation
 
 module "vpc" {
     source = "git@github.com:najeebkhot/terraform-modules?ref=main"
