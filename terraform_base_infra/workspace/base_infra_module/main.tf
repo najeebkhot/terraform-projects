@@ -37,7 +37,7 @@ provider "aws" {
 # }
 
 module "vpc" {
-    source = "../../configurations/base_infra/vpc"
+    source = "../../configurations/base_infra_aws/vpc"
 
     # VPC Configurations
 
@@ -50,7 +50,7 @@ module "vpc" {
     }
 }
 module "public_subnet_1" {
-    source = "../../configurations/base_infra/subnet"
+    source = "../../configurations/base_infra_aws/subnet"
 
     aws_vpc_id = module.vpc.vpc_id
     subnet_az = "us-east-1a"
@@ -62,7 +62,7 @@ module "public_subnet_1" {
 }
 
 module "public_subnet_2" {
-    source = "../../configurations/base_infra/subnet"
+    source = "../../configurations/base_infra_aws/subnet"
 
     aws_vpc_id = module.vpc.vpc_id
     subnet_az = "us-east-1b"
@@ -74,7 +74,7 @@ module "public_subnet_2" {
 }
 
 module "private_subnet_1" {
-    source = "../../configurations/base_infra/subnet"
+    source = "../../configurations/base_infra_aws/subnet"
 
     aws_vpc_id = module.vpc.vpc_id
     subnet_az = "us-east-1a"
@@ -86,7 +86,7 @@ module "private_subnet_1" {
 }
 
 module "private_subnet_2" {
-    source = "../../configurations/base_infra/subnet"
+    source = "../../configurations/base_infra_aws/subnet"
 
     aws_vpc_id = module.vpc.vpc_id
     subnet_az = "us-east-1b"
@@ -98,7 +98,7 @@ module "private_subnet_2" {
 }
 
 module "route_table" {
-    source = "../../configurations/base_infra/route_table"
+    source = "../../configurations/base_infra_aws/route_table"
 
     # Route Table Configurations
     aws_vpc_id = module.vpc.vpc_id
@@ -109,7 +109,7 @@ module "route_table" {
 }
 
 module "rtbl-pub_sub1_association" {
-  source = "../../configurations/base_infra/rtbl_association"
+  source = "../../configurations/base_infra_aws/rtbl_association"
 
     # Route Table Association Configuration
     subnet_id  = module.public_subnet_1.subnet_id
@@ -117,7 +117,7 @@ module "rtbl-pub_sub1_association" {
 }
 
 module "rtbl-pub_sub2_association" {
-  source = "../../configurations/base_infra/rtbl_association"
+  source = "../../configurations/base_infra_aws/rtbl_association"
 
     # Route Table Association Configuration
     subnet_id  = module.public_subnet_2.subnet_id
@@ -125,7 +125,7 @@ module "rtbl-pub_sub2_association" {
 }
 
 module "internet_gateway" {
-    source = "../../configurations/base_infra/internet_gateway"
+    source = "../../configurations/base_infra_aws/internet_gateway"
 
 
     # Internet Gateway Configurations
@@ -136,14 +136,14 @@ module "internet_gateway" {
 }
 
 # module "internet_gateway_attachment" {
-#     source = "../../configurations/base_infra/igw_association"
+#     source = "../../configurations/base_infra_aws/igw_association"
 
 #     aws_vpc_id = module.vpc.vpc_id
 #     aws_igw_id = module.internet_gateway.internet_gateway_id
 # }
 
 module "endpoint" {
-    source = "../../configurations/base_infra/endpoint"
+    source = "../../configurations/base_infra_aws/endpoint"
 
     aws_vpc_id = module.vpc.vpc_id
     endpoint_service_name = "com.amazonaws.us-east-1.s3"
@@ -153,20 +153,20 @@ module "endpoint" {
 }
 
 module "endpoint_rtbl_association" {
-    source = "../../configurations/base_infra_aws/endpoint_association"
+    source = "../../configurations/base_infra_aws_aws/endpoint_association"
 
     rtbl_id = module.route_table.rtbl_id
     vpc_endpoint_id = module.endpoint.endpoint_id
 }
 
 module "elastic_ip" {
-  source = "../../configurations/base_infra/elastic_ip"
+  source = "../../configurations/base_infra_aws/elastic_ip"
 #   elastic_ip_vpc = true
   elastic_ip_domain = "vpc"
 }
 
 module "nat_gateway" {
-  source = "../../configurations/base_infra/nat_gateway"
+  source = "../../configurations/base_infra_aws/nat_gateway"
 
   aws_elastic_ip_id = module.elastic_ip.elastic_ip_id
   subnet_id = module.public_subnet_1.subnet_id
