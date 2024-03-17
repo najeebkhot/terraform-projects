@@ -93,7 +93,7 @@ module "private_subnet_2" {
     #subnet_az_id = "aps1-az3"
     subnet_cidr_block = "10.0.144.0/20"
     subnet_name_tag = {
-        Name    =   "my-demo-app-automation-vpc-subnet-public2"
+        Name    =   "my-demo-app-automation-vpc-subnet-private2"
     }
 }
 
