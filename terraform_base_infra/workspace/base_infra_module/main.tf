@@ -1,11 +1,11 @@
 # data "aws_caller_identity" "current" {}
 
-data "aws_availability_zones" "available" {}
+# data "aws_availability_zones" "available" {}
 
-locals {
-    aws_account_id      = data.aws_caller_identity.current.account_id
-    region              = var.region
-}
+# locals {
+#     aws_account_id      = data.aws_caller_identity.current.account_id
+#     region              = var.region
+# }
 
 provider "aws" {
 
