@@ -37,4 +37,10 @@ variable enable_dns_hostnames {
 
 variable vpc_tags {
     type = map(string)
+    nullable = true
+}
+
+variable rtbl_tag {
+    type = map(string)
+    nullable = true
 }
