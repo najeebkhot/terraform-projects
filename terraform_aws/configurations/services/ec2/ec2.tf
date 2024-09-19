@@ -4,3 +4,8 @@ resource "aws_instance" "ec2" {
   subnet_id     = var.subnet_id
   tags          = var.ec2_name_tag
 }
+
+
+variable "ami_name" {
+  type = string
+}
